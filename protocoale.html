@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lista protocoale medicale — Spitalul Raional Leova">
+  <title>Lista protocoale — SR Leova</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue-900: #0b3d7a;
+      --blue-700: #1565c0;
+      --blue-100: #e8f1fb;
+      --white: #ffffff;
+      --text: #1a2b3c;
+      --text-muted: #5a6b7d;
+      --shadow: 0 8px 24px rgba(11, 61, 122, 0.12);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      background: linear-gradient(160deg, var(--blue-100) 0%, var(--white) 45%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page {
+      flex: 1;
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      padding: 2rem 1.25rem 2rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.25rem;
+      color: var(--blue-700);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    header {
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .logo {
+      margin: 0 auto 0.75rem;
+      width: 96px;
+      height: 96px;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    h1 {
+      font-size: clamp(1.4rem, 4vw, 1.85rem);
+      font-weight: 700;
+      color: var(--blue-900);
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 40rem;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1rem;
+      background: var(--white);
+      border: 1px solid #d8e4f2;
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .toolbar label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .toolbar-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      flex: 1 1 200px;
+    }
+
+    .toolbar input,
+    .toolbar select {
+      font: inherit;
+      padding: 0.55rem 0.75rem;
+      border: 1px solid #c5d6ea;
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--text);
+      width: 100%;
+    }
+
+    .toolbar input:focus,
+    .toolbar select:focus {
+      outline: 2px solid var(--blue-700);
+      outline-offset: 1px;
+    }
+
+    .count {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .table-wrap {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: auto;
+      max-height: min(70vh, 720px);
+      border: 1px solid #d8e4f2;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    thead {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: var(--blue-900);
+      color: var(--white);
+    }
+
+    th {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+    }
+
+    th.col-cod { width: 9rem; white-space: nowrap; }
+    th.col-cat { width: 14rem; }
+
+    tbody tr:nth-child(even) { background: #f7fafd; }
+    tbody tr:hover { background: #eef4fb; }
+
+    td {
+      padding: 0.65rem 1rem;
+      vertical-align: top;
+      border-bottom: 1px solid #e8eef5;
+    }
+
+    td.cod {
+      font-weight: 600;
+      color: var(--blue-900);
+      white-space: nowrap;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--blue-700);
+      background: var(--blue-100);
+      border-radius: 999px;
+      padding: 0.15rem 0.55rem;
+      line-height: 1.4;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem 2rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid #e2ebf5;
+      background: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+    }
+
+    footer a {
+      color: var(--blue-700);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      th.col-cat, td.col-cat { display: none; }
+      .toolbar { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="index.html">&larr; Înapoi la asistent AI</a>
+
+    <header>
+      <div class="logo">
+        <img src="assets/logo.png" alt="Spitalul Raional Leova" width="96" height="96">
+      </div>
+      <h1>Lista protocoale medicale</h1>
+      <p class="subtitle">Index al documentelor incluse în sursele asistentului AI (Medici).</p>
+    </header>
+
+    <div class="toolbar">
+      <div class="toolbar-group">
+        <label for="search">Căutare</label>
+        <input id="search" type="search" placeholder="Cod sau titlu (ex. PCN-123, tuberculoză)" autocomplete="off">
+      </div>
+      <div class="toolbar-group">
+        <label for="category">Categorie</label>
+        <select id="category">
+          <option value="">Toate categoriile</option>
+        </select>
+      </div>
+    </div>
+
+    <p class="count" id="count" aria-live="polite"></p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="col-cod">Cod</th>
+            <th class="col-cat" id="th-cat">Categorie</th>
+            <th>Titlu</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <p class="empty" id="empty" hidden>Niciun rezultat pentru filtrele selectate.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div>Spitalul Raional Leova &middot; <a href="https://ai.srleova.md/">ai.srleova.md</a> &middot; uz intern</div>
+  </footer>
+
+  <script src="protocoale-data.js"></script>
+  <script>
+    const list = window.PROTOCOALE_LIST || [];
+    const searchEl = document.getElementById("search");
+    const categoryEl = document.getElementById("category");
+    const tbody = document.getElementById("tbody");
+    const countEl = document.getElementById("count");
+    const emptyEl = document.getElementById("empty");
+    const thCat = document.getElementById("th-cat");
+
+    const categories = [...new Set(list.map((r) => r.categorie))];
+    for (const cat of categories) {
+      const opt = document.createElement("option");
+      opt.value = cat;
+      opt.textContent = cat;
+      categoryEl.appendChild(opt);
+    }
+
+    function normalize(s) {
+      return (s || "").toLowerCase().normalize("NFD").replace(/\p{M}/gu, "");
+    }
+
+    function render() {
+      const q = normalize(searchEl.value.trim());
+      const cat = categoryEl.value;
+      const showCatCol = !cat;
+
+      thCat.hidden = !showCatCol;
+
+      const filtered = list.filter((row) => {
+        if (cat && row.categorie !== cat) return false;
+        if (!q) return true;
+        const hay = normalize(row.cod + " " + row.titlu + " " + row.categorie);
+        return hay.includes(q);
+      });
+
+      tbody.innerHTML = "";
+      for (const row of filtered) {
+        const tr = document.createElement("tr");
+        const cells = [
+          `<td class="cod">${escapeHtml(row.cod || "—")}</td>`,
+        ];
+        if (showCatCol) {
+          cells.push(`<td class="col-cat"><span class="badge">${escapeHtml(row.categorie)}</span></td>`);
+        }
+        cells.push(`<td>${escapeHtml(row.titlu)}</td>`);
+        tr.innerHTML = cells.join("");
+        tbody.appendChild(tr);
+      }
+
+      emptyEl.hidden = filtered.length > 0;
+      countEl.textContent = `Afișate ${filtered.length} din ${list.length}`;
+    }
+
+    function escapeHtml(text) {
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    searchEl.addEventListener("input", render);
+    categoryEl.addEventListener("change", render);
+    render();
+  </script>
+</body>
+</html>

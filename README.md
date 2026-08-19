@@ -11,8 +11,14 @@ Copiați în document root-ul subdomeniului:
 ```
 index.html
 config.js
+protocoale.html
+protocoale-data.js
 assets/logo.png
 ```
+
+## Lista protocoale
+
+Pagina [`protocoale.html`](protocoale.html) — index cu 865 documente (PCN, PCS, PCSMF, ghiduri, algoritmi, standarde) incluse în sursele notebook-ului Medici. Link de pe homepage, sub butoanele departamentelor.
 
 ## Linkuri NotebookLM (chat preview)
 
@@ -29,6 +35,7 @@ Configurația butoanelor este în `config.js`.
 
 1. Deschideți [https://ai.srleova.md/](https://ai.srleova.md/)
 2. Click pe fiecare departament — se deschide NotebookLM (chat preview, fără surse)
-3. Autentificare cu contul Google al departamentului
+3. Link „Lista protocoale medicale incluse în surse” — index cu căutare și filtru categorie
+4. Autentificare cu contul Google al departamentului
 
 **Suport tehnic:** Ticau Tudor — 067104433

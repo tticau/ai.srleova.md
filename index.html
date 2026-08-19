@@ -159,6 +159,30 @@
     .dept-btn.resurse-umane:hover { background: #fffbf0; }
     .dept-btn.administratie:hover { background: #faf4fc; }
 
+    .secondary-link {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .secondary-link a {
+      display: inline-block;
+      color: var(--blue-700);
+      font-weight: 600;
+      font-size: 1.05rem;
+      text-decoration: none;
+      padding: 0.5rem 0.25rem;
+    }
+
+    .secondary-link a:hover {
+      text-decoration: underline;
+    }
+
+    .secondary-link .hint {
+      margin-top: 0.35rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
     footer {
       text-align: center;
       padding: 1.5rem 1rem 2rem;
@@ -256,6 +280,11 @@
         <span class="label">Administrație</span>
         <span class="hint">Regulamente și proceduri administrative</span>
       </a>
+    </section>
+
+    <section class="secondary-link" aria-label="Lista protocoale">
+      <a href="protocoale.html">Lista protocoale medicale incluse în surse</a>
+      <p class="hint">Index PCN / PCS / PCSMF, ghiduri, algoritmi, standarde</p>
     </section>
   </main>
 
