@@ -18,7 +18,7 @@ assets/logo.png
 
 ## Lista protocoale
 
-Pagina [`protocoale.html`](protocoale.html) — index cu 865 documente (PCN, PCS, PCSMF, ghiduri, algoritmi, standarde) incluse în sursele notebook-ului Medici. Link de pe homepage, sub butoanele departamentelor.
+Pagina [`protocoale.html`](protocoale.html) — index cu 716 documente (PCN, PCS, ghiduri, algoritmi, standarde) incluse în sursele notebook-ului Medici. Fără PCSMF (medici de familie — doar CS Leova). Link de pe homepage, sub butoanele departamentelor.
 
 ## Linkuri NotebookLM (chat preview)
 
