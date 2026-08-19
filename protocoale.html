@@ -227,7 +227,7 @@
         <img src="assets/logo.png" alt="Spitalul Raional Leova" width="96" height="96">
       </div>
       <h1>Lista protocoale medicale</h1>
-      <p class="subtitle">Index al documentelor incluse în sursele asistentului AI (Medici).</p>
+      <p class="subtitle">Index al documentelor incluse în sursele asistentului AI (Medici): PCN, PCS, ghiduri, algoritmi, standarde.</p>
     </header>
 
     <div class="toolbar">
@@ -266,7 +266,24 @@
 
   <script src="protocoale-data.js"></script>
   <script>
-    const list = window.PROTOCOALE_LIST || [];
+    const SR_CATEGORIES = [
+      "Protocoale clinice naționale",
+      "Protocoale clinice standardizate (alte specialități)",
+      "Ghiduri",
+      "Algoritmi de conduită",
+      "Standarde medicale",
+    ];
+
+    const list = (window.PROTOCOALE_LIST || []).filter((row) => {
+      if (row.categorie === "Protocoale clinice standardizate (medici de familie)") {
+        return false;
+      }
+      if ((row.cod || "").startsWith("PCSMF")) {
+        return false;
+      }
+      return SR_CATEGORIES.includes(row.categorie);
+    });
+
     const searchEl = document.getElementById("search");
     const categoryEl = document.getElementById("category");
     const tbody = document.getElementById("tbody");
@@ -274,8 +291,10 @@
     const emptyEl = document.getElementById("empty");
     const thCat = document.getElementById("th-cat");
 
-    const categories = [...new Set(list.map((r) => r.categorie))];
-    for (const cat of categories) {
+    for (const cat of SR_CATEGORIES) {
+      if (!list.some((row) => row.categorie === cat)) {
+        continue;
+      }
       const opt = document.createElement("option");
       opt.value = cat;
       opt.textContent = cat;
